@@ -1,5 +1,7 @@
 {
   "name": "fps-shooter",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react-vite"
 }

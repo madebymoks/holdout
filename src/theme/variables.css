@@ -1,2 +1,30 @@
 /* For information on how to create your own theme, please refer to:
 http://ionicframework.com/docs/theming/ */
+
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:800');
+
+/* Prevent white flash between screens — all Ionic surfaces default to the app's dark background */
+:root {
+  --ion-background-color: #121d2e;
+  --ion-background-color-rgb: 18, 29, 46;
+}
+
+html, body {
+  background-color: #121d2e;
+  overscroll-behavior: none;
+}
+
+/* Disable rubber-band / overscroll bounce on all scrollable containers.
+   -webkit-overflow-scrolling: auto removes the iOS native momentum scroll
+   layer that bounces independently of overscroll-behavior. */
+* {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto;
+}
+
+/* Disable IonContent's own scroll layer — pages use their own inner divs */
+ion-content {
+  --overflow: hidden;
+}

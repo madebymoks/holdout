@@ -1,0 +1,165 @@
+2026-04-10T19:28:49.580242Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.581053Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.581542Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.581549Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.589189Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.589210Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.589246Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.589252Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.594684Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.594710Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.594739Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.594745Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.598264Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.598280Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.598303Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.598308Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.599351Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.599359Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.599377Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.599381Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.600315Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.600322Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.600339Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.600342Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.624471Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.624500Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.624530Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.624536Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.643817Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.643839Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.643866Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.643871Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.647850Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.647863Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.647883Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.647897Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.649649Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.649657Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.649674Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.649677Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.655217Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.655238Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.655263Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.655269Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.759476Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.759587Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.759665Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.759674Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
+2026-04-10T19:28:49.759945Z  INFO discover_sources: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.759964Z  INFO discover_sources:walk_synchronous: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.766987Z  INFO discover_sources:walk_synchronous: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.767618Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ionic.config.json"
+2026-04-10T19:28:49.767715Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/tsconfig.node.json"
+2026-04-10T19:28:49.767750Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/CLAUDE.md"
+2026-04-10T19:28:49.767754Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/main/res/layout/activity_main.xml"
+2026-04-10T19:28:49.767742Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/cypress/e2e/test.cy.ts"
+2026-04-10T19:28:49.767777Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/gradlew"
+2026-04-10T19:28:49.767821Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/index.html"
+2026-04-10T19:28:49.767818Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json"
+2026-04-10T19:28:49.767859Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/.claude/settings.local.json"
+2026-04-10T19:28:49.767911Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/capacitor.settings.gradle"
+2026-04-10T19:28:49.767913Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/capacitor.build.gradle"
+2026-04-10T19:28:49.767961Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/cypress/support/commands.ts"
+2026-04-10T19:28:49.767980Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/App/App.xcodeproj/project.pbxproj"
+2026-04-10T19:28:49.767992Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/proguard-rules.pro"
+2026-04-10T19:28:49.768004Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/androidTest/java/com/getcapacitor/myapp/ExampleInstrumentedTest.java"
+2026-04-10T19:28:49.768049Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/capacitor.config.ts"
+2026-04-10T19:28:49.768251Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/main/res/values/styles.xml"
+2026-04-10T19:28:49.768566Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/build.gradle"
+2026-04-10T19:28:49.768688Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/App/App/Assets.xcassets/Contents.json"
+2026-04-10T19:28:49.770130Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/cypress/support/e2e.ts"
+2026-04-10T19:28:49.771452Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/App/App.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+2026-04-10T19:28:49.771793Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/gradle.properties"
+2026-04-10T19:28:49.771811Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/test/java/com/getcapacitor/myapp/ExampleUnitTest.java"
+2026-04-10T19:28:49.772056Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/gradlew.bat"
+2026-04-10T19:28:49.772167Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/build.gradle"
+2026-04-10T19:28:49.772274Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
+2026-04-10T19:28:49.772350Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/cypress.config.ts"
+2026-04-10T19:28:49.771958Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/App/App/Assets.xcassets/Splash.imageset/Contents.json"
+2026-04-10T19:28:49.772498Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/App.tsx"
+2026-04-10T19:28:49.772573Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/main.tsx"
+2026-04-10T19:28:49.772626Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/settings.gradle"
+2026-04-10T19:28:49.772682Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/tsconfig.json"
+2026-04-10T19:28:49.772702Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/public/Running.fbx"
+2026-04-10T19:28:49.772766Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/App.test.tsx"
+2026-04-10T19:28:49.772814Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/main/res/drawable/ic_launcher_background.xml"
+2026-04-10T19:28:49.772840Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/vite.config.ts"
+2026-04-10T19:28:49.772842Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/package.json"
+2026-04-10T19:28:49.772874Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/models/Running.glb"
+2026-04-10T19:28:49.772361Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/cypress/fixtures/example.json"
+2026-04-10T19:28:49.772378Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/main/res/values/strings.xml"
+2026-04-10T19:28:49.773052Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/App/App/AppDelegate.swift"
+2026-04-10T19:28:49.773119Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+2026-04-10T19:28:49.773127Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/main/res/values/ic_launcher_background.xml"
+2026-04-10T19:28:49.773187Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/App/App/Base.lproj/LaunchScreen.storyboard"
+2026-04-10T19:28:49.772823Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/eslint.config.js"
+2026-04-10T19:28:49.772848Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/GradientSky.tsx"
+2026-04-10T19:28:49.773304Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/GameCanvas.tsx"
+2026-04-10T19:28:49.772993Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/.vscode/extensions.json"
+2026-04-10T19:28:49.773376Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/.browserslistrc"
+2026-04-10T19:28:49.773852Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/EnemySpawner.tsx"
+2026-04-10T19:28:49.773864Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/App/CapApp-SPM/Sources/CapApp-SPM/CapApp-SPM.swift"
+2026-04-10T19:28:49.773921Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+2026-04-10T19:28:49.773968Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/main/res/xml/file_paths.xml"
+2026-04-10T19:28:49.773986Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/Projectile.tsx"
+2026-04-10T19:28:49.774041Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/main/AndroidManifest.xml"
+2026-04-10T19:28:49.774046Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/debug.xcconfig"
+2026-04-10T19:28:49.774069Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/hooks/useDeviceMotionPermission.ts"
+2026-04-10T19:28:49.774113Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/setupTests.ts"
+2026-04-10T19:28:49.774162Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/App/App/Base.lproj/Main.storyboard"
+2026-04-10T19:28:49.774189Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/vite-env.d.ts"
+2026-04-10T19:28:49.774216Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/app/src/main/java/io/ionic/starter/MainActivity.java"
+2026-04-10T19:28:49.774273Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/Minimap.tsx"
+2026-04-10T19:28:49.774279Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/App/CapApp-SPM/Package.swift"
+2026-04-10T19:28:49.774298Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/hooks/useLives.ts"
+2026-04-10T19:28:49.774325Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/GameOverlay.tsx"
+2026-04-10T19:28:49.774432Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/ios/App/CapApp-SPM/README.md"
+2026-04-10T19:28:49.774494Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/hooks/useRewardedAd.ts"
+2026-04-10T19:28:49.774534Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/pages/Home.tsx"
+2026-04-10T19:28:49.774200Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/GameHUD.tsx"
+2026-04-10T19:28:49.774613Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/DeviceOrientationControls.tsx"
+2026-04-10T19:28:49.774659Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/public/manifest.json"
+2026-04-10T19:28:49.774693Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/Crosshair.tsx"
+2026-04-10T19:28:49.774737Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/hooks/useHighScore.ts"
+2026-04-10T19:28:49.774760Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/InstructionsOverlay.tsx"
+2026-04-10T19:28:49.774820Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/ExploreContainer.tsx"
+2026-04-10T19:28:49.774860Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/variables.gradle"
+2026-04-10T19:28:49.774433Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/Enemy.tsx"
+2026-04-10T19:28:49.774893Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/Cloud.tsx"
+2026-04-10T19:28:49.774899Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/Sea.tsx"
+2026-04-10T19:28:49.774922Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/android/gradle/wrapper/gradle-wrapper.properties"
+2026-04-10T19:28:49.774931Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/DeathOverlay.tsx"
+2026-04-10T19:28:49.774894Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/Sky.tsx"
+2026-04-10T19:28:49.774973Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/ObstacleSpawner.tsx"
+2026-04-10T19:28:49.774980Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/GridFloor.tsx"
+2026-04-10T19:28:49.775404Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/Obstacle.tsx"
+2026-04-10T19:28:49.775688Z  INFO discover_sources: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.775697Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.775700Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.775703Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.812684Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.812708Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.812714Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.812717Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 3 file(s)
+2026-04-10T19:28:49.812806Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/pages/Home.css"
+2026-04-10T19:28:49.812808Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/theme/variables.css"
+2026-04-10T19:28:49.813006Z  INFO tailwindcss_oxide::scanner: Reading "/Users/mokssebina/Documents/Projects/fps-shooter/src/components/ExploreContainer.css"
+2026-04-10T19:28:49.813027Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.813034Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.813050Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.813132Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.813139Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.813521Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.814723Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.814731Z  INFO get_files:discover_sources: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.814734Z  INFO get_files:discover_sources: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.814853Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.815008Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.815014Z  INFO get_globs:discover_sources: tailwindcss_oxide::scanner: enter
+2026-04-10T19:28:49.815018Z  INFO get_globs:discover_sources: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.833835Z  INFO get_globs: tailwindcss_oxide::scanner: exit
+2026-04-10T19:28:49.866175Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2026-04-10T19:28:49.866192Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "/Users/mokssebina/Documents/Projects/fps-shooter", pattern: "**/*", negated: false }
+2026-04-10T19:28:49.866214Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2026-04-10T19:28:49.866218Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "/Users/mokssebina/Documents/Projects/fps-shooter" }
