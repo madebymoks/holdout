@@ -6,7 +6,7 @@
 .pnp.js
 /.claude
 /android
-/ios
+
 
 # testing
 /coverage
