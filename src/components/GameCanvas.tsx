@@ -17,6 +17,7 @@ import Minimap, { CARDINAL_COLORS } from './Minimap';
 import GridFloor from './GridFloor';
 import { useGameSounds } from '../hooks/useGameSounds';
 
+
 const SKY_COLOR = '#1d2b40';
 
 interface EnemyPosition { x: number; z: number; }
