@@ -119,6 +119,17 @@ export function useLivesProvider(): LivesState {
     return () => clearInterval(id);
   }, [checkRegen]);
 
+  // Precise wakeup: fire checkRegen exactly when the next life is due so
+  // the UI updates the moment the countdown hits zero instead of waiting
+  // up to 30 seconds for the polling interval to tick.
+  useEffect(() => {
+    if (lastLostAt === null || lives >= MAX_LIVES) return;
+    const delay = (lastLostAt + REGEN_MS) - Date.now();
+    if (delay <= 0) { checkRegen(); return; }
+    const id = setTimeout(checkRegen, delay);
+    return () => clearTimeout(id);
+  }, [lastLostAt, lives, checkRegen]);
+
   useEffect(() => {
     let handle: Awaited<ReturnType<typeof App.addListener>> | null = null;
     App.addListener('appStateChange', ({ isActive }) => {

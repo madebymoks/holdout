@@ -69,8 +69,8 @@ function playSound(key: string, volume = 1): void {
 
   const run = (buf: AudioBuffer) => {
     const c = getCtx();
-    // Resume if suspended, then play
-    if (c.state === 'suspended') {
+    // Resume if not running — handles both 'suspended' and iOS 'interrupted' state
+    if (c.state !== 'running') {
       c.resume().then(() => fire(buf)).catch(() => {});
     } else {
       fire(buf);

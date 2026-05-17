@@ -13,13 +13,14 @@ const HEAD_R = 0.3;   // head sphere radius — instant kill
 const BODY_Y = 1.2;   // torso centre height above group origin → world Y ≈ -0.3
 const BODY_R = 0.65;  // body sphere radius — spans Y -0.95 to +0.35, catches horizontal shots
 
-// Speed range — skewed so most enemies are fast
-const SPEED_MIN = 0.06;
-const SPEED_MAX = 0.18;
-function randomSpeed(): number {
+// Speed scales with total enemies spawned — slow start, gradual ramp, hard cap
+function randomSpeed(spawned: number): number {
+  const progress = Math.min(spawned / 50, 1); // full speed after ~50 enemies
+  const min = 0.03 + progress * 0.04; // 0.03 → 0.07
+  const max = 0.06 + progress * 0.07; // 0.06 → 0.13
   // Bias toward faster: take the max of two random samples
-  const a = SPEED_MIN + Math.random() * (SPEED_MAX - SPEED_MIN);
-  const b = SPEED_MIN + Math.random() * (SPEED_MAX - SPEED_MIN);
+  const a = min + Math.random() * (max - min);
+  const b = min + Math.random() * (max - min);
   return Math.max(a, b);
 }
 
@@ -32,8 +33,8 @@ interface EnemyData {
   health: number;
 }
 
-function createEnemy(id: number): EnemyData {
-  const theta = (Math.random() - 0.5) * Math.PI;
+function createEnemy(id: number, spawned: number): EnemyData {
+  const theta = Math.random() * 2 * Math.PI;
   const x = Math.sin(theta) * SPAWN_DIST;
   const z = -Math.cos(theta) * SPAWN_DIST;
   const len = Math.sqrt(x * x + z * z);
@@ -42,7 +43,7 @@ function createEnemy(id: number): EnemyData {
     position: [x, FLOOR_Y, z],
     rotationY: Math.atan2(-x, -z),
     direction: [-x / len, -z / len],
-    speed: randomSpeed(),
+    speed: randomSpeed(spawned),
     health: 2,
   };
 }
@@ -99,7 +100,7 @@ export default function EnemySpawner({ active, onGameFailed, onEnemyDestroyed, o
       spawnInterval.current = Math.max(60, 140 - pressure + Math.random() * 40);
       totalSpawned.current++;
 
-      const enemy = createEnemy(nextId.current++);
+      const enemy = createEnemy(nextId.current++, totalSpawned.current);
       activeEnemies.current.set(enemy.id, enemy);
       onEnemySpawned();
       setEnemyList(prev => {

@@ -6,10 +6,6 @@ const AD_ID = Capacitor.getPlatform() === 'ios'
   ? import.meta.env.VITE_ADMOB_REWARDED_IOS as string
   : import.meta.env.VITE_ADMOB_REWARDED_ANDROID as string;
 
-// Google's official test ad IDs — always return a test ad regardless of account status
-const TEST_AD_ID = Capacitor.getPlatform() === 'ios'
-  ? 'ca-app-pub-3940256099942544/1712485313'
-  : 'ca-app-pub-3940256099942544/5224354917';
 
 export type AdStatus = 'idle' | 'loading' | 'ready' | 'showing' | 'failed';
 
@@ -65,9 +61,9 @@ export function useRewardedAd(): RewardedAdState {
       );
 
       await AdMob.prepareRewardVideoAd({
-        adId:             import.meta.env.DEV ? AD_ID : TEST_AD_ID,
-        isTesting:        true,
-        npa:              false,
+        adId:      AD_ID,
+        isTesting: false,
+        npa:       false,
       });
     } catch {
       setAdStatus('failed');
