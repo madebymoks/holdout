@@ -1,7 +1,12 @@
 import { useRef, useEffect } from 'react';
 import { Quaternion } from 'three';
 
-interface EnemyPosition { x: number; z: number; }
+interface EnemyPosition { x: number; z: number; damaged: boolean; }
+
+const DOT_COLOR_HEALTHY = '#ff8800';
+// Same hot red as the body's damage-emissive glow and floor ring in Enemy.tsx,
+// so the radar cue and the in-world cue read as the same signal.
+const DOT_COLOR_DAMAGED = '#ff3300';
 
 interface Props {
   enemyPositionsRef: React.RefObject<EnemyPosition[]>;
@@ -65,11 +70,13 @@ export default function Minimap({ enemyPositionsRef, cameraQuaternionRef }: Prop
         ctx.fill();
       });
 
-      // Enemy dots — world-space positions, static relative to scene
-      (enemyPositionsRef.current ?? []).forEach(({ x, z }) => {
+      // Enemy dots — world-space positions, static relative to scene.
+      // Weakened (one body hit landed, one more kills) enemies draw in the
+      // same hot red as their in-world damage glow/ring.
+      (enemyPositionsRef.current ?? []).forEach(({ x, z, damaged }) => {
         const px = CENTER + x * SCALE;
         const pz = CENTER + z * SCALE;
-        ctx.fillStyle = '#ff8800';
+        ctx.fillStyle = damaged ? DOT_COLOR_DAMAGED : DOT_COLOR_HEALTHY;
         ctx.beginPath();
         ctx.arc(px, pz, 3.5, 0, Math.PI * 2);
         ctx.fill();

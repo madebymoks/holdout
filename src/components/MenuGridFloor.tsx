@@ -58,7 +58,8 @@ export default function MenuGridFloor() {
       const fL    = h;
       const nearZ = camH;          // 1.5 — bottom edge of canvas
       const farZ  = nearZ * 28;    // far clip
-      const step  = 1.0;           // world-unit cell size (square grid)
+      const step  = 7.5;           // world-unit cell size — matches the in-game
+                                     // GridFloor (uCellSize 0.025 on a 300-unit plane)
 
       // Visible half-width at near clip (world units)
       const halfW = (w / 2) * (nearZ / fL);  // = w * camH / (2 * h)

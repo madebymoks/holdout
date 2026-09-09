@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { BackSide } from 'three';
+import { BackSide, Color } from 'three';
 
 const vertexShader = /* glsl */`
   varying vec3 vWorldPosition;
@@ -24,16 +24,24 @@ const fragmentShader = /* glsl */`
   }
 `;
 
-export default function GradientSky() {
+interface Props {
+  topColor?:    string;
+  bottomColor?: string;
+}
+
+export default function GradientSky({ topColor = '#0c1626', bottomColor = '#1d2b40' }: Props) {
   const uniforms = useMemo(() => ({
-    uTopColor:    { value: [0.894, 0.878, 0.729] }, // #e4e0ba
-    uBottomColor: { value: [0.969, 0.851, 0.667] }, // #f7d9aa
+    uTopColor:    { value: new Color(topColor).toArray() },
+    uBottomColor: { value: new Color(bottomColor).toArray() },
     uOffset:      { value: 0.2 },
     uExponent:    { value: 0.5 },
-  }), []);
+  }), [topColor, bottomColor]);
 
   return (
-    <mesh scale={[500, 500, 500]}>
+    // Scaled to sit just inside the camera's far plane (120) so it isn't
+    // clipped — this game's camera never moves, so a sphere centred on the
+    // origin always fully encloses the view regardless of look direction.
+    <mesh scale={[110, 110, 110]}>
       <sphereGeometry args={[1, 32, 16]} />
       <shaderMaterial
         vertexShader={vertexShader}

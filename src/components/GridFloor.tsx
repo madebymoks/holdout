@@ -37,7 +37,17 @@ const fragmentShader = /* glsl */`
   }
 `;
 
-export default function GridFloor() {
+// How fast a kill's brightness kick fades — tuned so GameCanvas's +0.25
+// kick (see KILL_GRID_PULSE) decays back out over roughly 300ms.
+const PULSE_DECAY_PER_S = 0.25 / 0.3;
+
+interface Props {
+  // Shared mutable ref, bumped by GameCanvas on each kill and decayed here —
+  // deliberately not React state, so a kill doesn't trigger a re-render.
+  pulseRef?: { current: number };
+}
+
+export default function GridFloor({ pulseRef }: Props) {
   const matRef = useRef<ShaderMaterial>(null);
 
   const uniforms = useMemo(() => ({
@@ -48,11 +58,17 @@ export default function GridFloor() {
     uFadeRadius: { value: 0.32 },
   }), []);
 
-  // Subtle pulse on the opacity to give the grid a breathing feel
-  useFrame(({ clock }) => {
+  // Subtle pulse on the opacity to give the grid a breathing feel, plus a
+  // brief brightness kick layered on top for each kill.
+  useFrame(({ clock }, delta) => {
     if (!matRef.current) return;
-    matRef.current.uniforms.uOpacity.value =
-      0.30 + 0.10 * Math.sin(clock.elapsedTime * 0.6);
+    const base = 0.30 + 0.10 * Math.sin(clock.elapsedTime * 0.6);
+    const pulse = pulseRef?.current ?? 0;
+    matRef.current.uniforms.uOpacity.value = base + pulse;
+
+    if (pulseRef && pulseRef.current > 0) {
+      pulseRef.current = Math.max(0, pulseRef.current - PULSE_DECAY_PER_S * Math.min(delta, 1 / 30));
+    }
   });
 
   return (

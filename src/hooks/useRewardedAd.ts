@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { AdMob, RewardAdPluginEvents, AdMobRewardItem, AdLoadInfo } from '@capacitor-community/admob';
+import { AdMob, RewardAdPluginEvents } from '@capacitor-community/admob';
 import { Capacitor } from '@capacitor/core';
 
 const AD_ID = Capacitor.getPlatform() === 'ios'
@@ -34,7 +34,7 @@ export function useRewardedAd(): RewardedAdState {
       listenersRef.current = [];
 
       listenersRef.current.push(
-        AdMob.addListener(RewardAdPluginEvents.Loaded, (_info: AdLoadInfo) => {
+        AdMob.addListener(RewardAdPluginEvents.Loaded, () => {
           setAdStatus('ready');
         }),
 
@@ -43,7 +43,7 @@ export function useRewardedAd(): RewardedAdState {
           setAdError('Ad unavailable, please try again later.');
         }),
 
-        AdMob.addListener(RewardAdPluginEvents.Rewarded, (_reward: AdMobRewardItem) => {
+        AdMob.addListener(RewardAdPluginEvents.Rewarded, () => {
           if (rewardedRef.current) {
             rewardedRef.current();
             rewardedRef.current = null;

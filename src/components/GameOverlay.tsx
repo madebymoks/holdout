@@ -8,28 +8,31 @@ interface Props {
   crosshairType?: CrosshairType;
 }
 
-const COOLDOWN_MS = 300;
+const COOLDOWN_MS = 120;
 
 export default function GameOverlay({ onFire, gameOver, crosshairType = 'tactical' }: Props) {
   const [pulsed, setPulsed] = useState(false);
-  const [cooldown, setCooldown] = useState(false);
 
+  // A ref rather than state: the gate must be checked and set synchronously
+  // on tap, not after a React re-render, or a fast second tap can slip
+  // through (or get dropped) depending on render timing.
+  const cooldownRef   = useRef(false);
   const cooldownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pulseTimer    = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const fire = useCallback(() => {
-    if (cooldown) return;
+    if (cooldownRef.current) return;
+    cooldownRef.current = true;
 
     setPulsed(true);
     if (pulseTimer.current) clearTimeout(pulseTimer.current);
     pulseTimer.current = setTimeout(() => setPulsed(false), 60);
 
-    setCooldown(true);
     if (cooldownTimer.current) clearTimeout(cooldownTimer.current);
-    cooldownTimer.current = setTimeout(() => setCooldown(false), COOLDOWN_MS);
+    cooldownTimer.current = setTimeout(() => { cooldownRef.current = false; }, COOLDOWN_MS);
 
     onFire?.();
-  }, [cooldown, onFire]);
+  }, [onFire]);
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
     e.preventDefault();

@@ -1,5 +1,5 @@
 import { useRef, useEffect, type CSSProperties } from 'react';
-import PixelHeart from './PixelHeart';
+import DiamondPip from './DiamondPip';
 
 interface Props {
   score:     number;
@@ -11,49 +11,30 @@ interface Props {
 
 const FONT      = "'Open Sans', sans-serif";
 const LOGO_FONT = "'Squada One', sans-serif";
-const ACCENT    = '#f28f68';
-const TEXT_DIM  = 'rgba(255, 255, 255, 0.55)';
-const TEXT_MAIN = '#ffffff';
-const DIVIDER   = 'rgba(100, 80, 50, 0.25)';
-const LIFE_FILL = '#e05c3a';
-const LIFE_EMPTY = 'rgba(255,255,255,0.12)';
-const LIFE_BORDER = 'rgba(255,255,255,0.30)';
+const ACCENT    = '#f4813f';
+const TEXT_DIM  = 'rgba(245,242,234,0.5)';
+const TEXT_MAIN = '#f5f2ea';
+const BORDER    = 'rgba(245,242,234,0.16)';
 
 const labelStyle: CSSProperties = {
   fontFamily:    FONT,
-  fontSize:      '9px',
-  fontWeight:    700,
-  letterSpacing: '0.14em',
+  fontSize:      '10px',
+  fontWeight:    800,
+  letterSpacing: '0.16em',
   textTransform: 'uppercase',
   color:         TEXT_DIM,
   marginBottom:  6,
 };
 
-function LifeIcon({ filled, animating }: { filled: boolean; animating: boolean }) {
-  return (
-    <PixelHeart
-      size={16}
-      color={LIFE_FILL}
-      emptyColor={LIFE_EMPTY}
-      filled={filled}
-      style={{
-        opacity:    filled ? 1 : 0.25,
-        transform:  animating ? 'scale(0.5)' : 'scale(1)',
-        transition: 'opacity 0.4s ease, transform 0.4s ease',
-      }}
-    />
-  );
-}
-
 export default function GameHUD({ score, enemyCount, lives, maxLives, onStop }: Props) {
-  const scoreFontSize = score >= 1000 ? '22px' : score >= 100 ? '26px' : '32px';
+  const scoreFontSize = score >= 1000 ? '24px' : score >= 100 ? '28px' : '34px';
 
-  // Track which icon is mid-animation (the one just lost)
+  // Track which pip is mid-animation (the one just lost)
   const prevLives    = useRef(lives);
   const animatingIdx = useRef<number | null>(null);
 
   if (lives < prevLives.current) {
-    animatingIdx.current = lives; // index of the icon that just became empty
+    animatingIdx.current = lives; // index of the pip that just became empty
   }
   if (lives > prevLives.current) {
     animatingIdx.current = null;
@@ -73,22 +54,23 @@ export default function GameHUD({ score, enemyCount, lives, maxLives, onStop }: 
       top:           0,
       left:          0,
       right:         0,
-      paddingTop:    'calc(16px + env(safe-area-inset-top))',
       zIndex:        20,
       pointerEvents: 'none',
+      background:    'linear-gradient(to bottom, rgba(11,18,32,0.88) 0%, rgba(11,18,32,0.55) 70%, transparent 100%)',
     }}>
       <div style={{
-        background:   'transparent',
-        display:      'flex',
-        alignItems:   'center',
-        height:       68,
-        paddingLeft:  'calc(24px + env(safe-area-inset-left))',
+        display:      'grid',
+        gridTemplateColumns: '1fr auto 1fr',
+        alignItems:   'flex-start',
+        paddingTop:   'calc(20px + env(safe-area-inset-top))',
+        paddingBottom: 14,
+        paddingLeft:  'calc(20px + env(safe-area-inset-left))',
         paddingRight: 'calc(16px + env(safe-area-inset-right))',
-        borderBottom: `1px solid ${DIVIDER}`,
+        borderBottom: `1px solid ${BORDER}`,
       }}>
 
-        {/* ── SCORE ── */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
+        {/* ── KILLS ── */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <div style={labelStyle}>Kills</div>
           <div style={{
             fontFamily: LOGO_FONT,
@@ -100,64 +82,70 @@ export default function GameHUD({ score, enemyCount, lives, maxLives, onStop }: 
           </div>
         </div>
 
-        {/* divider */}
-        <div style={{ width: 1, height: 38, background: DIVIDER, flexShrink: 0 }} />
-
-        {/* ── LIVES ── */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
-          <div style={labelStyle}>Lives</div>
-          <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-            {Array.from({ length: maxLives }, (_, i) => (
-              <LifeIcon
-                key={i}
-                filled={i < lives}
-                animating={i === animatingIdx.current}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* divider */}
-        <div style={{ width: 1, height: 38, background: DIVIDER, flexShrink: 0 }} />
-
-        {/* ── INCOMING ── */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
+        {/* ── INCOMING — true centre column, unaffected by the side columns' widths ── */}
+        <div style={{
+          display:       'flex',
+          flexDirection: 'column',
+          alignItems:    'center',
+          border:        `1px solid ${enemyCount > 0 ? 'rgba(244,129,63,0.4)' : BORDER}`,
+          padding:       '6px 14px',
+          justifySelf:   'center',
+        }}>
           <div style={labelStyle}>Incoming</div>
           <div style={{
             fontFamily: LOGO_FONT,
             fontSize:   '20px',
-            color:      enemyCount > 0 ? TEXT_MAIN : TEXT_DIM,
+            color:      enemyCount > 0 ? ACCENT : TEXT_DIM,
             lineHeight: 1,
           }}>
-            {enemyCount > 0 ? enemyCount : 'clear'}
+            {enemyCount > 0 ? enemyCount : 'Clear'}
           </div>
         </div>
 
-        {/* ── Stop button ── */}
-        <button
-          onClick={onStop}
-          style={{
-            pointerEvents:  'all',
-            marginLeft:     16,
-            flexShrink:     0,
-            background:     'transparent',
-            border:         `1.5px solid ${DIVIDER}`,
-            borderRadius:   6,
-            width:          32,
-            height:         32,
-            display:        'flex',
-            alignItems:     'center',
-            justifyContent: 'center',
-            cursor:         'pointer',
-            color:          TEXT_DIM,
-            fontSize:       '18px',
-            lineHeight:     1,
-            fontFamily:     FONT,
-            padding:        0,
-          }}
-        >
-          ×
-        </button>
+        {/* ── LIVES + stop, stacked so the button sits top-right ── */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, justifySelf: 'end' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={labelStyle}>Lives</div>
+            <div style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
+              {Array.from({ length: maxLives }, (_, i) => (
+                <DiamondPip
+                  key={i}
+                  filled={i < lives}
+                  size={9}
+                  color={ACCENT}
+                  style={{
+                    transform:  i === animatingIdx.current ? 'rotate(45deg) scale(0.5)' : 'rotate(45deg) scale(1)',
+                    transition: 'opacity 0.4s ease, transform 0.4s ease',
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          <button
+            onClick={onStop}
+            style={{
+              pointerEvents:  'all',
+              flexShrink:     0,
+              background:     'transparent',
+              border:         `1.5px solid ${BORDER}`,
+              borderRadius:   0,
+              width:          34,
+              height:         34,
+              display:        'flex',
+              alignItems:     'center',
+              justifyContent: 'center',
+              cursor:         'pointer',
+              color:          TEXT_DIM,
+              fontSize:       '18px',
+              lineHeight:     1,
+              fontFamily:     FONT,
+              padding:        0,
+            }}
+          >
+            ×
+          </button>
+        </div>
 
       </div>
     </div>

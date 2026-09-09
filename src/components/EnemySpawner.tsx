@@ -13,6 +13,9 @@ const HEAD_R = 0.3;   // head sphere radius — instant kill
 const BODY_Y = 1.2;   // torso centre height above group origin → world Y ≈ -0.3
 const BODY_R = 0.65;  // body sphere radius — spans Y -0.95 to +0.35, catches horizontal shots
 
+const HEADSHOT_POINTS  = 3; // instant kill
+const BODY_KILL_POINTS = 1; // second body hit
+
 // Speed scales with total enemies spawned — slow start, gradual ramp, hard cap
 function randomSpeed(spawned: number): number {
   const progress = Math.min(spawned / 50, 1); // full speed after ~50 enemies
@@ -48,13 +51,13 @@ function createEnemy(id: number, spawned: number): EnemyData {
   };
 }
 
-interface EnemyPosition { x: number; z: number; }
+interface EnemyPosition { x: number; z: number; damaged: boolean; }
 
 interface Props {
   active: boolean;
   onGameFailed: () => void;
   onEnemyDestroyed: (projectileId: number) => void;
-  onEnemyKilled: (points: number) => void;
+  onEnemyKilled: (points: number, isHeadshot: boolean) => void;
   onEnemyCountChange: (count: number) => void;
   onEnemySpawned: () => void;
   projectileMeshes: React.RefObject<Map<number, Mesh>>;
@@ -114,7 +117,12 @@ export default function EnemySpawner({ active, onGameFailed, onEnemyDestroyed, o
     const positions: EnemyPosition[] = [];
     handleRefs.current.forEach((handle, id) => {
       if (!dyingIds.current.has(id)) {
-        positions.push({ x: handle.group.position.x, z: handle.group.position.z });
+        const data = activeEnemies.current.get(id);
+        positions.push({
+          x:       handle.group.position.x,
+          z:       handle.group.position.z,
+          damaged: (data?.health ?? 2) < 2,
+        });
       }
     });
     enemyPositionsRef.current = positions;
@@ -148,10 +156,29 @@ export default function EnemySpawner({ active, onGameFailed, onEnemyDestroyed, o
 
         if (!headHit && !bodyHit) return;
         hit = true;
+        // Any connecting hit consumes the projectile immediately, whether it
+        // kills or only damages — otherwise the same projectile could still
+        // be sitting in projectileMeshes next frame and register a second hit.
         onEnemyDestroyed(projectileId);
-        dyingIds.current.add(id);
-        handle.die();
-        onEnemyKilled(1);
+
+        if (headHit) {
+          // Instant kill regardless of remaining body health.
+          dyingIds.current.add(id);
+          handle.die();
+          onEnemyKilled(HEADSHOT_POINTS, true);
+          return;
+        }
+
+        // Body hit — decrements health in place (activeEnemies holds this
+        // same object, so the mutation persists to the next frame).
+        data.health -= 1;
+        if (data.health <= 0) {
+          dyingIds.current.add(id);
+          handle.die();
+          onEnemyKilled(BODY_KILL_POINTS, false);
+        } else {
+          handle.hit();
+        }
       });
       if (hit) return;
 

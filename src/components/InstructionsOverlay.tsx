@@ -5,10 +5,18 @@ const LOGO_FONT = "'Squada One', sans-serif";
 const STORAGE_KEY = 'striker_instructions_shown';
 const AUTO_DISMISS_MS = 6000;
 
+const BG        = '#0b1220';
+const TEXT      = '#f5f2ea';
+const ACCENT    = '#f4813f';
+const DARK      = '#1a1208';
+const BORDER    = 'rgba(245,242,234,0.14)';
+const CUT_CORNER = 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%)';
+
 const STEPS = [
   { icon: '📱', label: 'Aim', text: 'Tilt and rotate your phone to move the crosshair.' },
   { icon: '👆', label: 'Shoot', text: 'Tap anywhere on screen to fire.' },
   { icon: '🗺️', label: 'Radar', text: 'The map shows where enemies are coming from. Rotate to face them.' },
+  { icon: '⚠️', label: 'Incoming', text: 'Watch the count. It rises as more enemies close in.' },
   { icon: '❤️', label: 'Survive', text: "Don't let the humanoids reach you. Stay alive as long as you can." },
 ];
 
@@ -50,54 +58,84 @@ export default function InstructionsOverlay({ onDismissed }: Props) {
         display:        'flex',
         alignItems:     'center',
         justifyContent: 'center',
-        background:     'rgba(26, 18, 8, 0.62)',
+        background:     'rgba(4, 7, 12, 0.72)',
         backdropFilter: 'blur(3px)',
         WebkitBackdropFilter: 'blur(3px)',
         opacity:        fading ? 0 : 1,
         transition:     'opacity 0.4s ease',
         pointerEvents:  'all',
-        padding:        '32px',
+        padding:        '28px',
       }}
     >
-      <div style={{
-        background:   'rgba(228, 213, 168, 0.96)',
-        borderRadius: '16px',
-        padding:      '28px 24px',
-        maxWidth:     300,
-        width:        '100%',
-      }}>
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          background:   BG,
+          border:       `1px solid ${BORDER}`,
+          borderRadius: 0,
+          padding:      '24px 22px',
+          maxWidth:     320,
+          width:        '100%',
+        }}
+      >
+        {/* Section label */}
+        <div style={{
+          fontFamily:    FONT,
+          fontSize:      '9px',
+          fontWeight:    800,
+          letterSpacing: '0.20em',
+          textTransform: 'uppercase',
+          color:         ACCENT,
+          marginBottom:  8,
+        }}>
+          Mission Briefing
+        </div>
+
         {/* Title */}
         <div style={{
-          fontFamily:    LOGO_FONT,
-          fontSize:      '22px',
-          color:         '#1a1208',
-          letterSpacing: '0.06em',
-          marginBottom:  20,
-          textAlign:     'center',
+          fontFamily:   LOGO_FONT,
+          fontSize:     '26px',
+          color:        TEXT,
+          marginBottom: 18,
+          lineHeight:   1.05,
         }}>
-          How to Play
+          How To <span style={{ color: ACCENT }}>Play</span>
         </div>
 
         {/* Steps */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {STEPS.map((step, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-              <div style={{ fontSize: '18px', flexShrink: 0, lineHeight: 1.4 }}>{step.icon}</div>
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <div style={{
+                width:          32,
+                height:         32,
+                flexShrink:     0,
+                display:        'flex',
+                alignItems:     'center',
+                justifyContent: 'center',
+                fontSize:       '15px',
+                border:         `1px solid ${BORDER}`,
+              }}>
+                {step.icon}
+              </div>
               <div>
                 <span style={{
-                  fontFamily: LOGO_FONT,
-                  fontSize:   '14px',
-                  color:      '#f28f68',
-                  letterSpacing: '0.04em',
+                  fontFamily:    FONT,
+                  fontSize:      '11px',
+                  fontWeight:    800,
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color:         TEXT,
                 }}>
                   {step.label}
                 </span>
                 <span style={{
                   fontFamily: FONT,
-                  fontSize:   '13px',
-                  color:      '#1a1208',
-                  lineHeight: 1.55,
-                  fontWeight: 500,
+                  fontSize:   '12px',
+                  color:      TEXT,
+                  opacity:    0.65,
+                  lineHeight: 1.5,
+                  fontWeight: 400,
                 }}>
                   {' — '}{step.text}
                 </span>
@@ -108,30 +146,40 @@ export default function InstructionsOverlay({ onDismissed }: Props) {
 
         {/* Tip */}
         <div style={{
-          fontFamily:  FONT,
-          fontSize:    '12px',
-          color:       '#1a1208',
-          opacity:     0.6,
-          marginTop:   18,
-          fontStyle:   'italic',
-          lineHeight:  1.5,
+          border:       `1px solid ${BORDER}`,
+          borderRadius: 0,
+          padding:      '10px 12px',
+          marginTop:    16,
+          fontFamily:   FONT,
+          fontSize:     '12px',
+          color:        TEXT,
+          opacity:      0.65,
+          lineHeight:   1.5,
         }}>
-          💡 Tip: Hold your phone up and face forward to begin. Spin your whole body — enemies attack from all directions!
+          <span style={{ color: ACCENT, fontWeight: 800 }}>Tip:</span> Hold your phone up and face forward to begin. Spin your whole body — enemies attack from all directions!
         </div>
 
-        {/* Dismiss hint */}
-        <div style={{
-          fontFamily:  FONT,
-          fontSize:    '11px',
-          color:       '#1a1208',
-          opacity:     0.35,
-          textAlign:   'center',
-          marginTop:   14,
-          letterSpacing: '0.08em',
-          textTransform: 'uppercase',
-        }}>
-          Tap anywhere to dismiss
-        </div>
+        {/* Dismiss */}
+        <button
+          onClick={dismiss}
+          style={{
+            width:          '100%',
+            marginTop:      18,
+            padding:        '0.75rem 1.5rem',
+            fontFamily:     FONT,
+            fontSize:       '12px',
+            fontWeight:     800,
+            letterSpacing:  '0.14em',
+            textTransform:  'uppercase',
+            color:          DARK,
+            background:     ACCENT,
+            border:         'none',
+            clipPath:       CUT_CORNER,
+            cursor:         'pointer',
+          }}
+        >
+          Got It
+        </button>
       </div>
     </div>
   );

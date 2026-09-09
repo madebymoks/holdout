@@ -6,6 +6,7 @@ import { SplashScreen } from '@capacitor/splash-screen';
 import Home from './pages/Home';
 import { OnlineStatusContext, useOnlineStatusProvider } from './hooks/useOnlineStatus';
 import { LivesContext, useLivesProvider } from './hooks/useLives';
+import { MissionsContext, useMissionsProvider } from './hooks/useMissions';
 import PermissionGate from './components/PermissionGate';
 import DisclaimerScreen from './components/DisclaimerScreen';
 import { getStorage } from './storage';
@@ -42,6 +43,7 @@ const DISCLAIMER_KEY = 'holdout_disclaimer_accepted';
 const App: React.FC = () => {
   const isOnline = useOnlineStatusProvider();
   const lives    = useLivesProvider();
+  const missions = useMissionsProvider();
 
   // null = still reading storage (native splash is visible)
   const [step, setStep] = useState<LaunchStep | null>(null);
@@ -82,6 +84,7 @@ const App: React.FC = () => {
   return (
     <OnlineStatusContext.Provider value={isOnline}>
     <LivesContext.Provider value={lives}>
+    <MissionsContext.Provider value={missions}>
       <IonApp>
         <IonReactRouter>
           <IonRouterOutlet>
@@ -94,6 +97,7 @@ const App: React.FC = () => {
           </IonRouterOutlet>
         </IonReactRouter>
       </IonApp>
+    </MissionsContext.Provider>
     </LivesContext.Provider>
     </OnlineStatusContext.Provider>
   );
