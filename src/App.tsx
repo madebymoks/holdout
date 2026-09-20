@@ -50,11 +50,17 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const MIN_SPLASH_MS = 3500;
+    // A storage-read failure must never strand the user on the native splash
+    // forever (it has launchAutoHide: false, so nothing else will hide it) —
+    // fall back to the safe default of showing the disclaimer again.
     Promise.all([
-      getStorage().then(s => s.get(DISCLAIMER_KEY)),
+      getStorage().then(s => s.get(DISCLAIMER_KEY)).catch(() => false),
       new Promise<void>(r => setTimeout(r, MIN_SPLASH_MS)),
     ]).then(([val]) => {
       setStep(val === true ? 'permission' : 'disclaimer');
+      SplashScreen.hide({ fadeOutDuration: 300 });
+    }).catch(() => {
+      setStep('disclaimer');
       SplashScreen.hide({ fadeOutDuration: 300 });
     });
   }, []);

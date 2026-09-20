@@ -13,14 +13,24 @@
     />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
-    
+
+    <!-- Paints instantly, with zero network/stylesheet dependency — the real
+         fix for any white/blank flash before React mounts or while fonts
+         and other CSS are still loading. Must match --ion-background-color
+         in src/theme/variables.css. -->
+    <style>html, body { background-color: #121d2e; }</style>
+
     <link rel="manifest" href="/manifest.json" />
-    
+
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap" rel="stylesheet" />
-    
+    <!-- display=swap: renders body copy in a fallback font immediately
+         instead of leaving it invisible while this fetches (moved here,
+         off the render-blocking @import that used to live in variables.css) -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:800&display=swap" rel="stylesheet" />
+
     <!-- add to homescreen for ios -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Ionic App" />

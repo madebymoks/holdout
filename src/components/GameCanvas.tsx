@@ -385,7 +385,14 @@ export default function GameCanvas({ permission, onGameOver, onStop, lives, maxL
         <DustMotes />
 
         <CameraCapture quaternionRef={cameraQuaternionRef} />
-        <Weapon ref={weaponRef} />
+        {/* Defensive boundary — matches the pattern used for Enemy/Environment
+            below. useGLTF.preload() at module scope means the weapon model is
+            usually already loaded by the time this mounts, but without a
+            local Suspense boundary a genuine cold suspend here has no
+            enclosing fallback to catch it. */}
+        <Suspense fallback={null}>
+          <Weapon ref={weaponRef} />
+        </Suspense>
         <MuzzleLight ref={muzzleLightRef} />
         <CameraShake ref={cameraShakeRef} />
 

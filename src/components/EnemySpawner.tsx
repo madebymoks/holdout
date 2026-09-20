@@ -16,6 +16,29 @@ const BODY_R = 0.65;  // body sphere radius — spans Y -0.95 to +0.35, catches 
 const HEADSHOT_POINTS  = 3; // instant kill
 const BODY_KILL_POINTS = 1; // second body hit
 
+// Squared distance from a point to the closest point on a line segment —
+// used to test hits against the SWEPT path a projectile travelled this
+// frame (previous position -> current position), not just its current
+// point. A single point sample can miss entirely: the head sphere (0.3
+// radius, 0.6 diameter) is smaller than a projectile's per-frame travel
+// distance (Projectile.tsx's SPEED = 1.125), so a shot that visually
+// passes clean through the head can land on neither side of the sphere on
+// any single sampled frame. This doesn't change hitbox size — it just
+// stops discrete sampling from missing hits that geometrically connected.
+function segmentPointDistSq(
+  ax: number, ay: number, az: number,
+  bx: number, by: number, bz: number,
+  px: number, py: number, pz: number,
+): number {
+  const dx = bx - ax, dy = by - ay, dz = bz - az;
+  const lenSq = dx * dx + dy * dy + dz * dz;
+  let t = lenSq > 1e-10 ? ((px - ax) * dx + (py - ay) * dy + (pz - az) * dz) / lenSq : 0;
+  t = Math.max(0, Math.min(1, t));
+  const cx = ax + t * dx, cy = ay + t * dy, cz = az + t * dz;
+  const ddx = cx - px, ddy = cy - py, ddz = cz - pz;
+  return ddx * ddx + ddy * ddy + ddz * ddz;
+}
+
 // Speed scales with total enemies spawned — slow start, gradual ramp, hard cap
 function randomSpeed(spawned: number): number {
   const progress = Math.min(spawned / 50, 1); // full speed after ~50 enemies
@@ -75,6 +98,10 @@ export default function EnemySpawner({ active, onGameFailed, onEnemyDestroyed, o
   // Track total enemies spawned to progressively reduce spawn interval
   const totalSpawned = useRef(0);
   const gameFailed = useRef(false);
+  // Each live projectile's position as of the previous frame, for the swept
+  // hit test below. Rebuilt from scratch every frame (see useFrame) so an
+  // expired/consumed projectile's entry never lingers.
+  const prevProjectilePos = useRef<Map<number, { x: number; y: number; z: number }>>(new Map());
 
   const removeEnemy = useCallback((id: number) => {
     activeEnemies.current.delete(id);
@@ -127,6 +154,23 @@ export default function EnemySpawner({ active, onGameFailed, onEnemyDestroyed, o
     });
     enemyPositionsRef.current = positions;
 
+    // Snapshot this frame's swept path (previous position -> current
+    // position) for every live projectile, once, before the per-enemy hit
+    // test below — computed here rather than per-enemy so it's built
+    // exactly once per projectile per frame regardless of how many enemies
+    // are on screen. Rebuilding nextPrev from projectileMeshes (the
+    // authoritative live set) each frame means a consumed/expired
+    // projectile's tracked position is dropped automatically.
+    const projectileSegments = new Map<number, { ax: number; ay: number; az: number; bx: number; by: number; bz: number }>();
+    const nextPrev = new Map<number, { x: number; y: number; z: number }>();
+    projectileMeshes.current.forEach((pMesh, projectileId) => {
+      const curr = { x: pMesh.position.x, y: pMesh.position.y, z: pMesh.position.z };
+      const prev = prevProjectilePos.current.get(projectileId) ?? curr;
+      projectileSegments.set(projectileId, { ax: prev.x, ay: prev.y, az: prev.z, bx: curr.x, by: curr.y, bz: curr.z });
+      nextPrev.set(projectileId, curr);
+    });
+    prevProjectilePos.current = nextPrev;
+
     const toRemove: number[] = [];
 
     handleRefs.current.forEach((handle, id) => {
@@ -139,20 +183,23 @@ export default function EnemySpawner({ active, onGameFailed, onEnemyDestroyed, o
       group.position.x += data.direction[0] * data.speed;
       group.position.z += data.direction[1] * data.speed;
 
-      // 3D sphere collision — head sphere (instant kill) and body sphere (2 hits)
+      // 3D sphere collision — head sphere (instant kill) and body sphere (2
+      // hits) — tested against the projectile's swept path this frame (see
+      // projectileSegments above), not just its current point.
       let hit = false;
-      projectileMeshes.current.forEach((pMesh, projectileId) => {
+      projectileMeshes.current.forEach((_pMesh, projectileId) => {
         if (hit) return;
-        const px = pMesh.position.x, py = pMesh.position.y, pz = pMesh.position.z;
+        const seg = projectileSegments.get(projectileId);
+        if (!seg) return;
         const ex = group.position.x, ey = group.position.y, ez = group.position.z;
 
         // Head sphere
-        const hdx = px - ex, hdy = py - (ey + HEAD_Y), hdz = pz - ez;
-        const headHit = hdx * hdx + hdy * hdy + hdz * hdz < HEAD_R * HEAD_R;
+        const headDistSq = segmentPointDistSq(seg.ax, seg.ay, seg.az, seg.bx, seg.by, seg.bz, ex, ey + HEAD_Y, ez);
+        const headHit = headDistSq < HEAD_R * HEAD_R;
 
         // Body sphere
-        const bdx = px - ex, bdy = py - (ey + BODY_Y), bdz = pz - ez;
-        const bodyHit = bdx * bdx + bdy * bdy + bdz * bdz < BODY_R * BODY_R;
+        const bodyDistSq = segmentPointDistSq(seg.ax, seg.ay, seg.az, seg.bx, seg.by, seg.bz, ex, ey + BODY_Y, ez);
+        const bodyHit = bodyDistSq < BODY_R * BODY_R;
 
         if (!headHit && !bodyHit) return;
         hit = true;

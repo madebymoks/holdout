@@ -6,34 +6,71 @@ import logoImg from './images/HOLDOUT_logo.png';
 
 const FONT      = "'Open Sans', sans-serif";
 const LOGO_FONT = "'Squada One', sans-serif";
-const COLOR     = '#f28f68';
-const BG        = '#121d2e';
-const TEXT      = '#f0ece0';
+const BG        = '#0b1220';
+const TEXT      = '#f5f2ea';
+const BORDER    = 'rgba(245,242,234,0.14)';
+const ACCENT    = '#f4813f';
 const DARK      = '#1a1208';
 
 const SAFE_PAD = 'calc(40px + env(safe-area-inset-top)) calc(32px + env(safe-area-inset-right)) calc(40px + env(safe-area-inset-bottom)) calc(32px + env(safe-area-inset-left))';
 
-const btnStyle: React.CSSProperties = {
-  background:    '#f2ead0',
-  color:         DARK,
-  border:        `3px solid ${DARK}`,
-  borderRadius:  '60px',
-  padding:       '0.75rem 2.2rem',
-  fontSize:      '15px',
-  fontFamily:    FONT,
-  fontWeight:    900,
-  cursor:        'pointer',
-  letterSpacing: '0.18em',
-  textTransform: 'uppercase',
-  display:       'flex',
-  alignItems:    'center',
-  gap:           '10px',
-  boxShadow:     '0 5px 0 rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.45)',
+// Shared "cut corner" panel shape used across the redesign's buttons/tags
+const CUT_CORNER = 'polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%)';
+
+const primaryBtn: React.CSSProperties = {
+  width:          '100%',
+  padding:        '1rem 1.5rem',
+  fontFamily:     FONT,
+  fontSize:       '13px',
+  fontWeight:     800,
+  letterSpacing:  '0.14em',
+  textTransform:  'uppercase',
+  color:          DARK,
+  background:     ACCENT,
+  border:         'none',
+  clipPath:       CUT_CORNER,
+  cursor:         'pointer',
 };
 
-const Bracket = () => (
-  <span style={{ fontSize: '24px', fontWeight: 900, lineHeight: 1, opacity: 0.55, marginTop: '-1px' }}></span>
-);
+const sectionLabel: React.CSSProperties = {
+  display:       'flex',
+  alignItems:    'center',
+  gap:           8,
+  fontFamily:    FONT,
+  fontSize:      '10px',
+  fontWeight:    800,
+  letterSpacing: '0.22em',
+  textTransform: 'uppercase',
+  color:         ACCENT,
+  marginBottom:  10,
+};
+
+const heading: React.CSSProperties = {
+  fontFamily:    LOGO_FONT,
+  fontSize:      '34px',
+  lineHeight:    1.05,
+  color:         TEXT,
+  marginBottom:  24,
+  letterSpacing: '0.01em',
+};
+
+const bodyCard: React.CSSProperties = {
+  width:        '100%',
+  border:       `1px solid ${BORDER}`,
+  padding:      '16px 18px',
+  marginBottom: 28,
+  boxSizing:    'border-box',
+};
+
+const bodyText: React.CSSProperties = {
+  fontFamily: FONT,
+  fontSize:   '13.5px',
+  fontWeight: 400,
+  color:      TEXT,
+  opacity:    0.75,
+  lineHeight: 1.75,
+  textAlign:  'left',
+};
 
 interface Props {
   onGranted: () => void;
@@ -65,88 +102,73 @@ export default function PermissionGate({ onGranted }: Props) {
     return (
       <IonPage>
         <IonContent fullscreen>
-          <div style={{
-            position:       'absolute',
-            inset:          0,
-            background:     BG,
-            display:        'flex',
-            flexDirection:  'column',
-            alignItems:     'center',
-            justifyContent: 'flex-start',
-            paddingTop:     '30%',
-            paddingLeft:    'calc(32px + env(safe-area-inset-left))',
-            paddingRight:   'calc(32px + env(safe-area-inset-right))',
-            paddingBottom:  'calc(40px + env(safe-area-inset-bottom))',
-            gap:            24,
-          }}>
-            <img src={logoImg} alt="Holdout" style={{ width: '85%', userSelect: 'none', marginBottom: 8 }} />
-
-            <div style={{ fontSize: '40px', lineHeight: 1 }}>📱</div>
-
+          <div style={{ position: 'absolute', inset: 0, background: BG, overflowY: 'auto' }}>
             <div style={{
-              fontFamily:    LOGO_FONT,
-              fontSize:      '22px',
-              color:         COLOR,
-              textAlign:     'center',
-              letterSpacing: '0.04em',
-              textShadow:    '1px 1px 0 #000',
+              minHeight:      '100%',
+              display:        'flex',
+              flexDirection:  'column',
+              alignItems:     'flex-start',
+              justifyContent: 'center',
+              padding:        SAFE_PAD,
+              boxSizing:      'border-box',
             }}>
-              Motion Access
-            </div>
+              <img src={logoImg} alt="Holdout" style={{ width: 120, marginBottom: 28, userSelect: 'none', alignSelf: 'center' }} />
 
-            <div style={{
-              fontFamily: FONT,
-              fontSize:   '15px',
-              color:      TEXT,
-              opacity:    0.75,
-              textAlign:  'center',
-              lineHeight: 1.6,
-              maxWidth:   280,
-            }}>
-              Holdout uses your device motion to let you aim by moving your phone.
-            </div>
-
-            {/* Warning shown after declining the alert */}
-            {wasDeclined && (
-              <div style={{
-                background:   'rgba(220,60,60,0.12)',
-                border:       '1px solid rgba(220,60,60,0.35)',
-                borderRadius: 8,
-                padding:      '12px 16px',
-                maxWidth:     280,
-                textAlign:    'center',
-                fontFamily:   FONT,
-                fontSize:     '13px',
-                color:        '#e07070',
-                lineHeight:   1.55,
-              }}>
-                Motion access is required to play. Please tap Allow to continue.
+              <div style={sectionLabel}>
+                <span>◆</span> One More Step
               </div>
-            )}
 
-            <button onClick={() => setShowAlert(true)} style={btnStyle}>
-              <Bracket />
-              Allow Motion Access
-              <Bracket />
-            </button>
+              <div style={heading}>
+                Motion <span style={{ color: ACCENT }}>Access</span>
+              </div>
 
-            <IonAlert
-              isOpen={showAlert}
-              onDidDismiss={() => setShowAlert(false)}
-              header={alertHeader}
-              message={alertMessage}
-              buttons={[
-                {
-                  text:    "Don't Allow",
-                  role:    'cancel',
-                  handler: () => { setWasDeclined(true); },
-                },
-                {
-                  text:    'Allow',
-                  handler: () => { requestPermission(); },
-                },
-              ]}
-            />
+              <div style={bodyCard}>
+                <div style={bodyText}>
+                  Holdout uses your device&rsquo;s motion to let you aim by physically moving your phone.
+                </div>
+              </div>
+
+              {/* Warning shown after declining the alert */}
+              {wasDeclined && (
+                <div style={{
+                  width:        '100%',
+                  border:       '1px solid rgba(220,60,60,0.4)',
+                  background:   'rgba(220,60,60,0.15)',
+                  padding:      '12px 16px',
+                  marginBottom: 28,
+                  boxSizing:    'border-box',
+                  fontFamily:   FONT,
+                  fontSize:     '13px',
+                  color:        '#e06060',
+                  lineHeight:   1.55,
+                  textAlign:    'left',
+                }}>
+                  Motion access is required to play. Please tap Allow to continue.
+                </div>
+              )}
+
+              <button onClick={() => setShowAlert(true)} style={primaryBtn}>
+                Allow Motion Access
+              </button>
+
+              <IonAlert
+                isOpen={showAlert}
+                onDidDismiss={() => setShowAlert(false)}
+                header={alertHeader}
+                message={alertMessage}
+                buttons={[
+                  {
+                    text:    "Don't Allow",
+                    role:    'cancel',
+                    handler: () => { setWasDeclined(true); },
+                  },
+                  {
+                    text:    'Allow',
+                    handler: () => { requestPermission(); },
+                  },
+                ]}
+              />
+            </div>
           </div>
         </IonContent>
       </IonPage>
@@ -159,81 +181,58 @@ export default function PermissionGate({ onGranted }: Props) {
     return (
       <IonPage>
         <IonContent fullscreen>
-          <div style={{
-            position:       'absolute',
-            inset:          0,
-            background:     BG,
-            display:        'flex',
-            flexDirection:  'column',
-            alignItems:     'center',
-            justifyContent: 'flex-start',
-            paddingTop:     '30%',
-            paddingLeft:    'calc(32px + env(safe-area-inset-left))',
-            paddingRight:   'calc(32px + env(safe-area-inset-right))',
-            paddingBottom:  'calc(40px + env(safe-area-inset-bottom))',
-            gap:            24,
-          }}>
-            <img src={logoImg} alt="Holdout" style={{ width: '85%', userSelect: 'none', marginBottom: 8 }} />
-
-            <div style={{ fontSize: '40px', lineHeight: 1 }}>🚫</div>
-
+          <div style={{ position: 'absolute', inset: 0, background: BG, overflowY: 'auto' }}>
             <div style={{
-              fontFamily:    LOGO_FONT,
-              fontSize:      '22px',
-              color:         COLOR,
-              textAlign:     'center',
-              letterSpacing: '0.04em',
-              textShadow:    '1px 1px 0 #000',
+              minHeight:      '100%',
+              display:        'flex',
+              flexDirection:  'column',
+              alignItems:     'flex-start',
+              justifyContent: 'center',
+              padding:        SAFE_PAD,
+              boxSizing:      'border-box',
             }}>
-              Motion Access Required
-            </div>
+              <img src={logoImg} alt="Holdout" style={{ width: 120, marginBottom: 28, userSelect: 'none', alignSelf: 'center' }} />
 
-            <div style={{
-              fontFamily: FONT,
-              fontSize:   '15px',
-              color:      TEXT,
-              opacity:    0.75,
-              textAlign:  'center',
-              lineHeight: 1.6,
-              maxWidth:   280,
-            }}>
-              Holdout needs motion sensor access to play. Without it, aiming won't work.
-            </div>
+              <div style={sectionLabel}>
+                <span>◆</span> Action Needed
+              </div>
 
-            {/* On Android, a re-attempt via the alert may still work */}
-            {!isIos && (
-              <>
-                <button onClick={() => setShowAlert(true)} style={btnStyle}>
-                  <Bracket />
-                  Allow Motion Access
-                  <Bracket />
+              <div style={heading}>
+                Access <span style={{ color: ACCENT }}>Required</span>
+              </div>
+
+              <div style={bodyCard}>
+                <div style={bodyText}>
+                  Holdout needs motion sensor access to play. Without it, aiming won&rsquo;t work.
+                </div>
+              </div>
+
+              {/* On Android, a re-attempt via the alert may still work */}
+              {!isIos && (
+                <>
+                  <button onClick={() => setShowAlert(true)} style={primaryBtn}>
+                    Allow Motion Access
+                  </button>
+                  <IonAlert
+                    isOpen={showAlert}
+                    onDidDismiss={() => setShowAlert(false)}
+                    header={alertHeader}
+                    message={alertMessage}
+                    buttons={[
+                      { text: "Don't Allow", role: 'cancel' },
+                      { text: 'Allow', handler: () => { requestPermission(); } },
+                    ]}
+                  />
+                </>
+              )}
+
+              {/* iOS: native dialog won't re-appear after denial — must go to Settings */}
+              {isIos && (
+                <button onClick={() => window.open('app-settings:', '_system')} style={primaryBtn}>
+                  Open Settings
                 </button>
-                <IonAlert
-                  isOpen={showAlert}
-                  onDidDismiss={() => setShowAlert(false)}
-                  header={alertHeader}
-                  message={alertMessage}
-                  buttons={[
-                    { text: "Don't Allow", role: 'cancel' },
-                    { text: 'Allow', handler: () => { requestPermission(); } },
-                  ]}
-                />
-              </>
-            )}
-
-            {/* iOS: native dialog won't re-appear after denial — must go to Settings */}
-            {isIos && (
-              <button
-                onClick={() => window.open('app-settings:', '_system')}
-                style={{
-                  ...btnStyle,
-                }}
-              >
-                <Bracket />
-                Open Settings
-                <Bracket />
-              </button>
-            )}
+              )}
+            </div>
           </div>
         </IonContent>
       </IonPage>
